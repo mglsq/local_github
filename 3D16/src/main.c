@@ -42,7 +42,7 @@ int main(void)
 			USARTSendStrInt(USART1,LEDHigh,16);
 			TimeStart();	//开始下一轮采集
 		}
-		Delay10ms(100);
+		Delay1ms(100);
 		//printf("%d\r\n",CollectionFinish);
 	}
 }
@@ -51,6 +51,9 @@ int main(void)
 void SysTick_Handler(void)
 {
 	SystemTime++;
-	LEDRefresh();
+	if(SystemTime < 60000)
+	{
+		LEDRefresh();
+	}
 }
 
